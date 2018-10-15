@@ -7,8 +7,8 @@
         <div class="film_list" :ref="el" :data-request='url'>
             <ul class="clearfix">
                 <router-link tag='li' v-for="(v) in array" :key="v.id" :to='{path:"/film-detail/"+v.id}'>
-                <div class="film_list_img"></div>
-                <div class="film__list__detail">
+                    <div class="film_list_img"></div>
+                        <div class="film__list__detail">
                         <h4 class="film__list__title">{{v.title}}</h4>
                         <p class="film__list__rank">评分：{{v.rating.average}}</p>
                         <p class="film__list__rank">
