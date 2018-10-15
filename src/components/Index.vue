@@ -1,6 +1,5 @@
 <template>
     <div id="container">
-        <img src="" alt=""/>1
         <swiper :swiperOption="swiperOption" :swiperList='swiperList'></swiper>
     </div>
 </template>

@@ -24,15 +24,16 @@ export default new Router({
       children: [
         {
           path: '/',
-          name: 'home',
           redirect: '/index'
         },
         {
           path: '/index',
+          name: 'home',
           component: Index
         },
         {
           path: '/search',
+          name: 'search',
           component: Search
         },
         {
@@ -44,6 +45,7 @@ export default new Router({
     },
     {
       path: '/car',
+      name: 'car',
       component: Car
     }
   ]
