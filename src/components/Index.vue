@@ -19,4 +19,15 @@ export default {
     swiper
   }
 };
+let f = fetch('');
+// let f = fetch("/api/likePoetry?name=杜甫");
+f.then(r => {
+  return r.json();
+})
+  .then(r => {
+    console.log(r);
+  })
+  .catch(e => {
+    console.log(e);
+  });
 </script>
