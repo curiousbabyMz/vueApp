@@ -19,4 +19,14 @@ export default {
     swiper
   }
 };
+fetch("/api/searchAuthors?name=白居易")
+  .then(r => {
+    return r.json();
+  })
+  .then(r => {
+    console.log(r);
+  })
+  .catch(e => {
+    console.log(e);
+  });
 </script>

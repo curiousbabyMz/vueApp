@@ -11,13 +11,8 @@
   height: 100%;
   margin: 0 auto;
 }
-.swiper-box {
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-}
 .swiper-item {
-  height: 5rem;
+  height: 2rem;
 }
 </style>
 
