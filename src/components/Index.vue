@@ -19,8 +19,8 @@ export default {
     swiper
   }
 };
-let f = fetch('');
-// let f = fetch("/api/likePoetry?name=杜甫");
+// let f = fetch("");
+let f = fetch("/api/likePoetry?name=杜甫");
 f.then(r => {
   return r.json();
 })
