@@ -1,4 +1,4 @@
-const api = "http://api.apiopen.top/";
+const api = "http://api.douban.com/";
 module.exports = {
     '/api': {
         target: api,

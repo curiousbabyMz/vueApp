@@ -20,3 +20,19 @@
         </div>
     </div>
 </template>
+<script>
+export default {
+  mounted: function() {
+    fetch("/api/v2/movie/top250?start=0&count=25")
+      .then(r => {
+        return r.json();
+      })
+      .then(r => {
+        console.log(r);
+      })
+      .catch(e => {
+        console.log(e);
+      });
+  }
+};
+</script>

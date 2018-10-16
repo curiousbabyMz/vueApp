@@ -5,6 +5,7 @@
 </template>
 <script>
 import swiper from "@/components/swiper";
+import film from "@/components/film";
 export default {
   data() {
     return {
@@ -19,14 +20,4 @@ export default {
     swiper
   }
 };
-fetch("/api/searchAuthors?name=白居易")
-  .then(r => {
-    return r.json();
-  })
-  .then(r => {
-    console.log(r);
-  })
-  .catch(e => {
-    console.log(e);
-  });
 </script>
