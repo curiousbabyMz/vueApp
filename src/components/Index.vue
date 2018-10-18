@@ -1,11 +1,12 @@
 <template>
     <div id="container">
         <swiper :swiperOption="swiperOption" :swiperList='swiperList'></swiper>
+        <films></films>
     </div>
 </template>
 <script>
 import swiper from "@/components/swiper";
-import film from "@/components/film";
+import films from "@/components/films";
 export default {
   data() {
     return {
@@ -17,7 +18,8 @@ export default {
     };
   },
   components: {
-    swiper
+    swiper,
+    films
   }
 };
 </script>

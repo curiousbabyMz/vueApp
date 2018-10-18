@@ -8,7 +8,8 @@ Vue.config.productionTip = false
 
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 Vue.use(VueAwesomeSwiper);
-
+import VueLazyLoad from 'vue-lazyload'
+Vue.use(VueLazyLoad);
 
 /* eslint-disable no-new */
 new Vue({
