@@ -7,6 +7,7 @@ import router from './router'
 Vue.config.productionTip = false
 
 import VueAwesomeSwiper from 'vue-awesome-swiper'
+import "project\vueApp\node_modules\vue-awesome-swiper\node_modulesswiperdistcssswiper";
 Vue.use(VueAwesomeSwiper);
 import VueLazyLoad from 'vue-lazyload'
 Vue.use(VueLazyLoad);

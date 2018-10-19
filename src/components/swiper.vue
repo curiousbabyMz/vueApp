@@ -1,7 +1,7 @@
 <template>
     <swiper class="swiper-box">
-      <swiper-slide class="swiper-item" v-for="(v,i) in swiperList" :key="i">{{v}}</swiper-slide>
-      <div class="swiper-pagination" slot="swiperOption.pagination"></div>
+      <swiper-slide class="swiper-item" v-for="(v,i) in swiperList" :key="i" ><img :src="getImages(v.images.small)" alt=""></swiper-slide>
+      <div class="swiper-pagination" slot="pagination"></div>
     </swiper>
 </template>
 <style>
@@ -11,12 +11,11 @@
   height: 100%;
   margin: 0 auto;
 }
-.swiper-item {
-  height: 2rem;
-}
 </style>
 
 <script>
+import "project\vueApp\node_modules\vue-awesome-swiper\node_modulesswiperdistcssswiper.css";
+import { getImages } from "@/base/util";
 export default {
   props: {
     swiperOption: {
@@ -29,6 +28,13 @@ export default {
   },
   data() {
     return {};
+  },
+  methods: {
+    getImages: getImages
+  },
+  components: {
+    swiper,
+    swiperSlide
   }
 };
 </script>

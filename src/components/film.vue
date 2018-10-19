@@ -8,7 +8,7 @@
             <div id="containner">
             <ul class="clearfix" id='scroller'>
                 <router-link tag='li' v-for="(v) in array" :key="v.id" :to='{path:"/film-detail/"+v.id}'>
-                    <div class="film_list_img"><img v-lazy="v.images.small" alt=""></div>
+                    <div class="film_list_img"><img v-lazy="getImages(v.images.small)" alt=""></div>
                         <div class="film__list__detail">
                         <h4 class="film__list__title">{{v.title}}</h4>
                         <p class="film__list__rank">评分：{{v.rating.average}}</p>
@@ -33,7 +33,7 @@
 </style>
 
 <script>
-import getStyle from "@/base/util";
+import { getStyle, getImages } from "@/base/util";
 import BScroll from "better-scroll";
 export default {
   props: {
@@ -83,7 +83,8 @@ export default {
       var width = getStyle(el.children[0], "width");
       var padding = getStyle(el.children[0], "padding-right");
       el.style.width = el.children.length * (width + padding + 2) + "px";
-    }
+    },
+    getImages: getImages
   }
 };
 </script>

@@ -14,8 +14,21 @@ export default {
         pagination: ".swiper-pagination",
         direction: "horizontal"
       },
-      swiperList: [1, 23, 4, 45, 8]
+      swiperList: []
     };
+  },
+  mounted() {
+    fetch("/api/in_theaters")
+      .then(r => {
+        return r.json();
+      })
+      .then(r => {
+        console.log(r);
+        this.swiperList = r.subjects;
+      })
+      .catch(e => {
+        console.log(e);
+      });
   },
   components: {
     swiper,
