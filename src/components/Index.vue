@@ -4,6 +4,7 @@
         <films></films>
     </div>
 </template>
+
 <script>
 import swiper from "@/components/swiper";
 import films from "@/components/films";

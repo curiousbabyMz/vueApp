@@ -5,7 +5,6 @@
     </swiper>
 </template>
 <style>
-.swiper-box,
 .swiper-item {
   width: 100%;
   height: 100%;
@@ -14,7 +13,8 @@
 </style>
 
 <script>
-import "project\vueApp\node_modules\vue-awesome-swiper\node_modulesswiperdistcssswiper.css";
+// import swiper from "../../node_modules/vue-awesome-swiper/src/swiper";
+// import slide from "../../node_modules/vue-awesome-swiper/src/slide";
 import { getImages } from "@/base/util";
 export default {
   props: {
@@ -33,8 +33,8 @@ export default {
     getImages: getImages
   },
   components: {
-    swiper,
-    swiperSlide
+    // swiper,
+    // slide
   }
 };
 </script>

@@ -7,6 +7,7 @@ import Index from '@/components/Index'
 import Search from '@/components/Search'
 import Vip from '@/components/Vip'
 import Car from '@/components/Car'
+import filmDetail from '@/components/film-detail'
 
 Vue.use(Router)
 
@@ -40,13 +41,18 @@ export default new Router({
           path: '/vip',
           name: 'vip',
           component: Vip
-        }
+        },
+
       ]
     },
     {
       path: '/car',
       name: 'car',
       component: Car
+    },
+    {
+      path: '/film-detail/:id',
+      component: filmDetail
     }
   ]
 })
