@@ -47,7 +47,7 @@
   top: 0;
   left: 0;
   content: "";
-  background: linear-gradient(to bottom,rgba(255, 255, 255, 0),rgba(0, 0, 0, 0.37))
+  background: linear-gradient(to bottom,rgba(255, 255, 255, 0),rgba(0, 0, 0, 0.644))
 }
 .head img {
   width: 100px;
