@@ -37,7 +37,17 @@
 .head {
   padding: 40px 20px 0;
   display: flex;
-  color: #eee;
+  color: #fff;
+  position: relative;
+}
+.head::before {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  content: "";
+  background: linear-gradient(to bottom,rgba(255, 255, 255, 0),rgba(0, 0, 0, 0.37))
 }
 .head img {
   width: 100px;
@@ -45,6 +55,7 @@
 }
 .head .title {
   padding: 10px;
+  z-index: 1;
 }
 .main {
   flex-grow: 1;
