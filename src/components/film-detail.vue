@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-      <div class="icon-back">&#xe624;</div>
+      <div class="icon-back" ><router-link to='/index'>&#xe6fe;</router-link></div>
       <div class="head" :style="{background:`url(${getImages(data.images.large)}) center/cover`}">
         <div><img v-lazy="getImages(data.images.small)" alt=""/></div>
         <div class="title">
@@ -47,7 +47,11 @@
   top: 0;
   left: 0;
   content: "";
-  background: linear-gradient(to bottom,rgba(255, 255, 255, 0),rgba(0, 0, 0, 0.644))
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0),
+    rgba(0, 0, 0, 0.644)
+  );
 }
 .head img {
   width: 100px;
@@ -111,15 +115,19 @@ p {
   height: 30px;
   top: 20px;
   left: 20px;
+  z-index: 1;
+}
+a {
+  text-decoration: none;
 }
 @font-face {
   font-family: "iconfont"; /* project id 884344 */
-  src: url("//at.alicdn.com/t/font_884344_ywsixtslvob.eot");
-  src: url("//at.alicdn.com/t/font_884344_ywsixtslvob.eot?#iefix")
+  src: url("//at.alicdn.com/t/font_884344_8plbz9bm6hp.eot");
+  src: url("//at.alicdn.com/t/font_884344_8plbz9bm6hp.eot?#iefix")
       format("embedded-opentype"),
-    url("//at.alicdn.com/t/font_884344_ywsixtslvob.woff") format("woff"),
-    url("//at.alicdn.com/t/font_884344_ywsixtslvob.ttf") format("truetype"),
-    url("//at.alicdn.com/t/font_884344_ywsixtslvob.svg#iconfont") format("svg");
+    url("//at.alicdn.com/t/font_884344_8plbz9bm6hp.woff") format("woff"),
+    url("//at.alicdn.com/t/font_884344_8plbz9bm6hp.ttf") format("truetype"),
+    url("//at.alicdn.com/t/font_884344_8plbz9bm6hp.svg#iconfont") format("svg");
 }
 </style>
 
