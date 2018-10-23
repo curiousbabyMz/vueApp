@@ -9,6 +9,19 @@
     </div>
 </template>
 <style>
+.bottom-nav {
+  display: flex;
+  padding: 0;
+  margin: 0;
+}
+.bottom-nav__li {
+  flex-grow: 1;
+  list-style: none;
+  border: 1px solid #ddd;
+  border-width: 0 1px;
+  padding: 0 20px;
+  margin: 20px 0;
+}
 .redP {
   background: #f00;
   border-radius: 50%;

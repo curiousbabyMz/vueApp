@@ -6,9 +6,9 @@
       <div class="film-count">{{v.number+v.stock}}</div>
       <div class="film-price">￥{{v.price*v.number}}</div>
       <div class="film-edit">
-        <span class="icon">&#xe756;</span>
-        <span class="icon">&#xe72c;</span>
-        <span class="icon">&#xe7cc;</span>
+        <span class="icon" @click="change(v.id,1)">&#xe756;</span>
+        <span class="icon" @click="change(v.id,-1)">&#xe72c;</span>
+        <span class="icon" @click="clear(v.id)">&#xe7cc;</span>
       </div>
     </div>
   </div>
@@ -49,6 +49,7 @@
 </style>
 
 <script>
+import { mapMutations } from "vuex";
 export default {
   computed: {
     goodsList() {
@@ -57,6 +58,38 @@ export default {
   },
   mounted() {
     console.log(this.goodsList);
+  },
+  methods: {
+    ...mapMutations({
+      del: "deleteGoods",
+      update: "updateGoods"
+    }),
+    findPosition(id) {
+      return this.goodsList.findIndex(item => {
+        return item.id == id;
+      });
+    },
+    clear(id) {
+      var i = this.findPosition(id);
+      this.del(i);
+    },
+    toggleSelect(id) {
+      var i = this.findPosition(id);
+      this.update({
+        index: i,
+        key: "select",
+        value: !this.goodsList[i].select
+      });
+    },
+    change(id, val) {
+      let i = this.findPosition(id);
+      let n = this.goodsList[i].number;
+      this.update({
+        index: i,
+        key: "number",
+        value: n + val <= 0 ? 1 : n + val
+      });
+    }
   }
 };
 </script>
