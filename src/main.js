@@ -7,14 +7,15 @@ import router from './router'
 Vue.config.productionTip = false
 
 import VueAwesomeSwiper from 'vue-awesome-swiper'
-import "F:/web/vue/project/vueApp/node_modules/vue-awesome-swiper/node_modules/swiper/dist/css/swiper.min.css";
 Vue.use(VueAwesomeSwiper);
+
 import VueLazyLoad from 'vue-lazyload'
 Vue.use(VueLazyLoad, {
   preLoad: 1.5,
   loading: require('@/assets/logo.png'),
   attempt: 1
 });
+
 import { store } from './store/index'
 
 /* eslint-disable no-new */

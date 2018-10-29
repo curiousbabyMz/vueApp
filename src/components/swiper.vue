@@ -1,20 +1,19 @@
 <template>
-    <swiper class="swiper-box">
-      <swiper-slide class="swiper-item" v-for="(v,i) in swiperList" :key="i" ><img :src="getImages(v.images.small)" alt=""></swiper-slide>
+    <swiper class="swiper-box" :options='swiperOption'>
+      <swiper-slide v-for="(v,i) in swiperList" :key="i" ><img :src="getImages(v.images.small)" alt=""></swiper-slide>
       <div class="swiper-pagination" slot="pagination"></div>
     </swiper>
 </template>
 <style>
-.swiper-item {
-  width: 100%;
-  height: 100%;
-  margin: 0 auto;
+.swiper-box {
+  display: flex;
+}
+img {
+  width: 12rem;
 }
 </style>
 
 <script>
-// import swiper from "../../node_modules/vue-awesome-swiper/src/swiper";
-// import slide from "../../node_modules/vue-awesome-swiper/src/slide";
 import { getImages } from "@/base/util";
 export default {
   props: {
@@ -26,15 +25,8 @@ export default {
       default: []
     }
   },
-  data() {
-    return {};
-  },
   methods: {
     getImages: getImages
-  },
-  components: {
-    // swiper,
-    // slide
   }
 };
 </script>

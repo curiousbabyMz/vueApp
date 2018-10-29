@@ -2,7 +2,7 @@
     <div class="film">
         <h3 class="film_type">
             <span>{{p.type}}</span>
-            <router-link :to='{path:"/classify/"+p.url}'><span class="more"><em>更多</em></span></router-link>
+            <router-link :to='{path:"/classify/"+p.url}'><span class="more iconfont ">更多<span class="icon-angleright"></span></span></router-link>
         </h3>
         <div class="film_list"  :ref="p.el" :data-request='p.url'>
               <ul class="clearfix">
@@ -21,6 +21,11 @@
     </div>
 </template>
 <style>
+.film_type {
+  padding: 0 10px;
+  display: flex;
+  justify-content: space-between;
+}
 .film_list {
   overflow: hidden;
 }
@@ -86,7 +91,7 @@ export default {
       var width = getStyle(el.children[0], "width");
       var padding = getStyle(el.children[0], "padding-right");
       el.style.width = el.children.length * (width + padding + 2) + "px";
-      console.log(el.children[0].style.width)
+      console.log(el.children[0].style.width);
     },
     getImages: getImages
   }

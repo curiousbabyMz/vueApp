@@ -4,6 +4,21 @@
         <films></films>
     </div>
 </template>
+<style>
+#container {
+  display: flex;
+  flex-direction: column;
+}
+.iconfont {
+  font-style: normal;
+}
+a,
+a:active,
+a:visited {
+  text-decoration: none;
+  color: black;
+}
+</style>
 
 <script>
 import swiper from "@/components/swiper";
@@ -12,8 +27,9 @@ export default {
   data() {
     return {
       swiperOption: {
-        pagination: ".swiper-pagination",
-        direction: "horizontal"
+        pagination: {
+          el: ".swiper-pagination"
+        }
       },
       swiperList: []
     };
