@@ -31,4 +31,7 @@ export default {
   left: 20px;
   z-index: 5;
 }
+ul{
+  padding: 0;
+}
 </style>

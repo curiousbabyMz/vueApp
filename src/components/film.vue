@@ -91,7 +91,7 @@ export default {
       var width = getStyle(el.children[0], "width");
       var padding = getStyle(el.children[0], "padding-right");
       el.style.width = el.children.length * (width + padding + 2) + "px";
-      console.log(el.children[0].style.width);
+      console.log(el.style.width);
     },
     getImages: getImages
   }
