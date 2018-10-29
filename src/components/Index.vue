@@ -8,6 +8,7 @@
 #container {
   display: flex;
   flex-direction: column;
+  flex: 1;
 }
 .iconfont {
   font-style: normal;
