@@ -1,29 +1,38 @@
 <template>
-  <div class="container">
-    <div v-for="(v,i) in goodsList" :key="i" class="item">
-      <div class="film-pic"><img :src="v.url" alt=""></div>
-      <div class="film-name">{{v.title}}</div>
-      <div class="film-count">{{v.number+v.stock}}</div>
-      <div class="film-price">￥{{v.price*v.number}}</div>
-      <div class="film-edit">
-        <span class="icon" @click="change(v.id,1)">&#xe756;</span>
-        <span class="icon" @click="change(v.id,-1)">&#xe72c;</span>
-        <span class="icon" @click="clear(v.id)">&#xe7cc;</span>
+  <div class="car-container">
+    <div class="back"><router-link to='/index'><span class="iconfont icon-leftopen"></span></router-link></div>
+    <div class="items">
+      <div v-for="(v,i) in goodsList" :key="i" class="item">
+        <div class="film-pic"><img :src="v.url" alt=""></div>
+        <div class="film-name">{{v.title}}</div>
+        <div class="film-count">{{v.number+v.stock}}</div>
+        <div class="film-price">￥{{v.price*v.number}}</div>
+        <div class="film-edit">
+          <span class="iconfont icon-plus" @click="change(v.id,1)"></span>
+          <span class="iconfont icon-minus" @click="change(v.id,-1)"></span>
+          <span class="iconfont icon-trashempty" @click="clear(v.id)"></span>
+        </div>
       </div>
     </div>
+    <div class="foot"><button @click="console.log('pay')">支 付</button></div>
   </div>
 </template>
 <style>
-.container {
-  background: #eee;
-  padding: 10px 0;
+.car-container {
+  background: linear-gradient(bottom, #dfdfdf, #efefef);
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
+  height: inherit;
+}
+.items {
+  flex-grow: 1;
+  margin: 50px 0;
 }
 .item {
   background: #fff;
-  padding: 10px;
-  margin: 10px 0;
+  padding: 0 10px;
+  margin: 5px 0;
   display: flex;
   align-items: center;
 }
@@ -34,17 +43,21 @@
 .film-pic img {
   width: 50px;
 }
-.icon {
-  font-family: "iconfont";
+.foot {
+  height: 50px;
+  display: flex;
+  justify-content: flex-end;
+  background: #efefef;
+  border-top: #dfdfdf;
 }
-@font-face {
-  font-family: "iconfont"; /* project id 884344 */
-  src: url("//at.alicdn.com/t/font_884344_8plbz9bm6hp.eot");
-  src: url("//at.alicdn.com/t/font_884344_8plbz9bm6hp.eot?#iefix")
-      format("embedded-opentype"),
-    url("//at.alicdn.com/t/font_884344_8plbz9bm6hp.woff") format("woff"),
-    url("//at.alicdn.com/t/font_884344_8plbz9bm6hp.ttf") format("truetype"),
-    url("//at.alicdn.com/t/font_884344_8plbz9bm6hp.svg#iconfont") format("svg");
+.foot button {
+  padding: 0 50px;
+  border: none;
+  background: rgb(26, 206, 95);
+  /* color: rgb(19, 126, 60); */
+  color: #fff;
+  font-size: 18px;
+  font-weight: bold;
 }
 </style>
 

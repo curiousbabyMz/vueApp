@@ -23,4 +23,12 @@ export default {
   height: 100%;
   /* padding-top: 60px; */
 }
+.back {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  top: 20px;
+  left: 20px;
+  z-index: 5;
+}
 </style>

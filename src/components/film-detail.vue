@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-      <div class="icon-back" ><router-link to='/index'>&#xe6fe;</router-link></div>
+      <div class="back"><router-link to='/index'><span class="iconfont icon-leftopen"></span></router-link></div>
       <div class="head" :style="{background:`url(${getImages(data.images.large)}) center/cover`}">
         <div><img v-lazy="getImages(data.images.small)" alt=""/></div>
         <div class="title">
@@ -108,7 +108,7 @@ p {
     transform: translateY(-100%);
   }
 }
-.icon-back {
+.back {
   font-family: "iconfont";
   position: absolute;
   width: 30px;
@@ -120,15 +120,15 @@ p {
 a {
   text-decoration: none;
 }
-@font-face {
-  font-family: "iconfont"; /* project id 884344 */
+/* @font-face {
+  font-family: "iconfont"; project id 884344 
   src: url("//at.alicdn.com/t/font_884344_8plbz9bm6hp.eot");
   src: url("//at.alicdn.com/t/font_884344_8plbz9bm6hp.eot?#iefix")
       format("embedded-opentype"),
     url("//at.alicdn.com/t/font_884344_8plbz9bm6hp.woff") format("woff"),
     url("//at.alicdn.com/t/font_884344_8plbz9bm6hp.ttf") format("truetype"),
     url("//at.alicdn.com/t/font_884344_8plbz9bm6hp.svg#iconfont") format("svg");
-}
+} */
 </style>
 
 <script>

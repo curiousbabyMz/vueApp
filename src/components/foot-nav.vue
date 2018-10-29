@@ -12,7 +12,7 @@
 @import url("//at.alicdn.com/t/font_884344_k7mmcuuxcd.css");
 .bottom-nav {
   display: flex;
-  padding: 20px 0;
+  padding: 10px 0;
   margin: 0;
   box-shadow: 0 0 3px 1px #ddd;
 }
@@ -21,10 +21,12 @@
   list-style: none;
   /* border: 1px solid #ddd;
   border-width: 0 1px; */
+  font-size: 20px;
 }
 .redP {
   background: #f00;
   border-radius: 50%;
+  font-size: 5px;
   padding: 1px 4px;
   color: #fff;
 }

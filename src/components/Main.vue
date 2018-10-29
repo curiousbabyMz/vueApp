@@ -10,6 +10,10 @@
   flex-direction: column;
   height: 100%;
 }
+.container > div:nth-of-type(1) {
+  flex: 1;
+}
+
 </style>
 
 <script>
