@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="container Fdetail-container">
       <div class="back"><router-link to='/index'><span class="iconfont icon-leftopen"></span></router-link></div>
       <div class="head" :style="{background:`url(${getImages(data.images.large)}) center/cover`}">
         <div><img v-lazy="getImages(data.images.small)" alt=""/></div>
@@ -26,9 +26,9 @@
     </div>
 </template>
 <style>
-.container {
-  display: flex;
-  flex-direction: column;
+.Fdetail-container {
+  /* display: flex; */
+  /* flex-direction: column; */
   height: inherit;
   justify-content: center;
   position: relative;

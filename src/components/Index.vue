@@ -1,15 +1,15 @@
 <template>
-    <div id="container">
+    <div class="container">
         <swiper :swiperOption="swiperOption" :swiperList='swiperList'></swiper>
         <films></films>
     </div>
 </template>
 <style>
-#container {
+/* #container {
   display: flex;
   flex-direction: column;
-  /* flex: 1; */
-}
+   flex: 1; 
+} */
 .iconfont {
   font-style: normal;
 }
@@ -36,7 +36,7 @@ export default {
     };
   },
   mounted() {
-    fetch("/api/in_theaters")
+    fetch("/api/in_theaters?count=5")
       .then(r => {
         return r.json();
       })

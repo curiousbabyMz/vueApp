@@ -9,12 +9,12 @@
     </div>
 </template>
 <style>
-@import url("//at.alicdn.com/t/font_884344_k7mmcuuxcd.css");
 .bottom-nav {
   display: flex;
   padding: 10px 0;
   margin: 0;
   box-shadow: 0 0 3px 1px #ddd;
+  background: #fff;
 }
 .bottom-nav__li {
   flex-grow: 1;

@@ -1,12 +1,12 @@
 <template>
-  <div class="car-container">
+  <div class="container car-container">
     <div class="back"><router-link to='/index'><span class="iconfont icon-leftopen"></span></router-link></div>
     <div class="items">
       <div v-for="(v,i) in goodsList" :key="i" class="item">
         <div class="film-pic"><img :src="v.url" alt=""></div>
         <div class="film-name">{{v.title}}</div>
         <div class="film-count">{{v.number+v.stock}}</div>
-        <div class="film-price">￥{{v.price*v.number}}</div>
+        <div class="film-price">￥{{v.price}}</div>
         <div class="film-edit">
           <span class="iconfont icon-plus" @click="change(v.id,1)"></span>
           <span class="iconfont icon-minus" @click="change(v.id,-1)"></span>
@@ -14,14 +14,14 @@
         </div>
       </div>
     </div>
-    <div class="foot"><button @click="console.log('pay')">支 付</button></div>
+    <div class="foot"><span class="sum">￥{{sum}}</span><button @click="console.log(`pay${v}`)">支 付</button></div>
   </div>
 </template>
 <style>
 .car-container {
   background: linear-gradient(bottom, #dfdfdf, #efefef);
-  display: flex;
-  flex-direction: column;
+  /* display: flex; */
+  /* flex-direction: column; */
   justify-content: flex-start;
   height: inherit;
 }
@@ -45,10 +45,17 @@
 }
 .foot {
   height: 50px;
+  padding-left: 50px;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   background: #efefef;
   border-top: #dfdfdf;
+}
+.foot .sum {
+  font-size: 22px;
+  color: #6ac421;
+  text-shadow: 0, 0, 1px #1b3308;
+  align-self: center;
 }
 .foot button {
   padding: 0 50px;
@@ -67,6 +74,13 @@ export default {
   computed: {
     goodsList() {
       return this.$store.state.goodsList;
+    },
+    sum() {
+      let sum = 0;
+      this.$store.state.goodsList.map(i => {
+        sum += i.price * i.number;
+      });
+      return sum;
     }
   },
   mounted() {
@@ -97,6 +111,10 @@ export default {
     change(id, val) {
       let i = this.findPosition(id);
       let n = this.goodsList[i].number;
+      if (n + val == 0) {
+        this.del(i);
+        return;
+      }
       this.update({
         index: i,
         key: "number",

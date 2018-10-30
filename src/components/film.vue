@@ -33,10 +33,11 @@
 .clearfix {
   list-style: none;
   display: flex;
-  width: 100%;
+  /* width: 100%; */
+  padding: 5px;
 }
 .clearfix > li {
-  margin: 5px;
+  padding: 0 5px;
 }
 </style>
 
@@ -90,7 +91,7 @@ export default {
     freshWidth(el) {
       var width = getStyle(el.children[0], "width");
       var padding = getStyle(el.children[0], "padding-right");
-      el.style.width = el.children.length * (width + padding + 2) + "px";
+      el.style.width = el.children.length * (width + padding * 2) + 10 + "px";
       console.log(el.style.width);
     },
     getImages: getImages
