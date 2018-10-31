@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <div class="head">
-            <div class="search-i iconfont icon-search"></div><input type="text" v-model="keyword" @input="search" placeholder="请输入你要找的关键字"/><div class="search-clear iconfont icon-cancel" @click="clear"></div>
+            <div class="search-i iconfont icon-search"></div><input type="text" v-model="keyword" placeholder="请输入你要找的关键字"/><div class="search-clear iconfont icon-cancel" @click="clear"></div>
         </div>
         <div class="main" ref="list">
           <div>
@@ -120,8 +120,14 @@ export default {
       this.search("up");
     });
   },
+  watch: {
+    keyword() {
+      this.search();
+    }
+  },
   methods: {
     search: function(type = "") {
+      this.list = [];
       fetch(`/api/search?tag=${this.keyword}&count=10`)
         .then(r => {
           return r.json();
