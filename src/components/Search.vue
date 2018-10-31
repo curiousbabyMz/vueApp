@@ -1,9 +1,11 @@
 <template>
     <div class="container">
         <div class="head">
-            <span class="search-i iconfont icon-search"></span><input type="text" v-model="keyword" @input="search" placeholder="请输入你要找的关键字"/><span class="search-clear iconfont icon-cancel" @click="clear"></span>
+            <div class="search-i iconfont icon-search"></div><input type="text" v-model="keyword" @input="search" placeholder="请输入你要找的关键字"/><div class="search-clear iconfont icon-cancel" @click="clear"></div>
         </div>
-        <div class="main">
+        <div class="main" ref="list">
+          <div>
+            <div class="loading">loading</div>
             <div class="detail" v-for="(v,i) in list" :key="i">
                 <div class="search-img"><img v-lazy='getImages(v.images.small)' alt=""></div>
                 <div class="info">
@@ -11,9 +13,9 @@
                     <div>导演：<span v-for="(d,i) in v.directors" :key="i">{{d.name}} </span></div>
                     <div>主演：<span v-for="(d,i) in v.casts" :key="i">{{d.name}} </span></div>
                     <div>类型：<span v-for="(d,i) in v.genres" :key="i">{{d}} </span></div>
-
                 </div>
             </div>
+          </div>
         </div>
     </div>
 </template>
@@ -24,6 +26,7 @@
   line-height: 30px;
   padding: 15px 0;
   background: rgb(29, 151, 39);
+  position: relative;
 }
 .head input {
   width: 90%;
@@ -34,15 +37,38 @@
   text-indent: 2.5em;
 }
 .head .search-i {
-  position: relative;
+  display: inline-block;
+  position: absolute;
   left: 1.5em;
 }
 .head .search-clear {
-  position: relative;
+  display: inline-block;
+  position: absolute;
   right: 2em;
 }
 .main {
   overflow: auto;
+}
+.main > div {
+  position: relative;
+}
+.loading {
+  position: absolute;
+  margin: auto;
+  top: -40px;
+  left: 0;
+  right: 0;
+  height: 40px;
+  line-height: 40px;
+  animation: load 1s infinite alternate ease-in;
+}
+@keyframes load {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
 }
 .detail {
   display: flex;
@@ -66,6 +92,7 @@ img {
 
 <script>
 import { getImages } from "@/base/util.js";
+import BScroll from "better-scroll";
 export default {
   data() {
     return {
@@ -75,9 +102,26 @@ export default {
   },
   mounted() {
     this.search();
+    this.scroller = new BScroll(this.$refs.list, {
+      scrollX: false,
+      scrollY: true,
+      click: true,
+      pullDownRefresh: {
+        treshold: 80
+      },
+      pullUpLoad: {
+        treshold: -80
+      }
+    });
+    this.scroller.on("pullingDown", () => {
+      this.search("down");
+    });
+    this.scroller.on("pullingUp", () => {
+      this.search("up");
+    });
   },
   methods: {
-    search: function() {
+    search: function(type = "") {
       fetch(`/api/search?tag=${this.keyword}&count=10`)
         .then(r => {
           return r.json();
@@ -85,6 +129,16 @@ export default {
         .then(r => {
           console.log(r);
           this.list = r.subjects;
+          this.$nextTick(() => {
+            this.scroller.refresh();
+            if (type == "down") {
+              this.scroller.finishPullDown();
+              this.scroller.scrollTo(0, 0, 1000);
+            }
+            if (type == "up") {
+              this.scroller.finishPullUp();
+            }
+          });
         })
         .catch(e => {
           console.log(e);

@@ -1,9 +1,9 @@
 <template>
     <div class="film">
-        <h3 class="film_type">
+        <div class="film_type">
             <span>{{p.type}}</span>
             <router-link :to='{path:"/classify/"+p.url}'><span class="more iconfont ">更多<span class="icon-angleright"></span></span></router-link>
-        </h3>
+        </div>
         <div class="film_list"  :ref="p.el" :data-request='p.url'>
               <ul class="clearfix">
                   <router-link tag='li' v-for="(v) in array" :key="v.id" :to='{path:"/film-detail/"+v.id}'>
@@ -21,23 +21,40 @@
     </div>
 </template>
 <style>
+.film_type,
+.film_type a {
+  color: #fff;
+}
 .film_type {
-  padding: 0 10px;
+  padding:5px 20px;
+  line-height: 30px;
+  background: rgb(9, 160, 84);
   display: flex;
   justify-content: space-between;
 }
 .film_list {
   overflow: hidden;
+  border: 1px solid #ddd;
+  border-width: 1px 0;
+  background: linear-gradient(rgb(255, 255, 255), rgb(240, 240, 240));
 }
 
 .clearfix {
   list-style: none;
   display: flex;
   /* width: 100%; */
-  padding: 5px;
+  padding: 0 5px;
 }
 .clearfix > li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   padding: 0 5px;
+}
+.film_list_img {
+  display: flex;
+  align-items: center;
+  flex: 1;
 }
 </style>
 
@@ -92,7 +109,6 @@ export default {
       var width = getStyle(el.children[0], "width");
       var padding = getStyle(el.children[0], "padding-right");
       el.style.width = el.children.length * (width + padding * 2) + 10 + "px";
-      console.log(el.style.width);
     },
     getImages: getImages
   }
