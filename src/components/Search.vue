@@ -6,14 +6,18 @@
         <div class="main" ref="list">
           <div>
             <div class="loading">loading</div>
-            <div class="detail" v-for="(v,i) in list" :key="i">
-                <div class="search-img"><img v-lazy='getImages(v.images.small)' alt=""></div>
-                <div class="info">
-                    <h1>{{v.title}} <span>{{v.year}} {{v.subtype}}</span></h1>
-                    <div>导演：<span v-for="(d,i) in v.directors" :key="i">{{d.name}} </span></div>
-                    <div>主演：<span v-for="(d,i) in v.casts" :key="i">{{d.name}} </span></div>
-                    <div>类型：<span v-for="(d,i) in v.genres" :key="i">{{d}} </span></div>
+            <div v-for="(v,i) in list" :key="i">
+              <router-link :to="`/film-detail/${v.id}`">
+                <div class="detail">
+                  <div class="search-img"><img v-lazy='getImages(v.images.small)' alt=""></div>
+                  <div class="info">
+                      <h1>{{v.title}} <span>{{v.year}} {{v.subtype}}</span></h1>
+                      <div>导演：<span v-for="(d,i) in v.directors" :key="i">{{d.name}} </span></div>
+                      <div>主演：<span v-for="(d,i) in v.casts" :key="i">{{d.name}} </span></div>
+                      <div>类型：<span v-for="(d,i) in v.genres" :key="i">{{d}} </span></div>
+                  </div>
                 </div>
+              </router-link>
             </div>
           </div>
         </div>
@@ -85,7 +89,7 @@
 .info h1 span {
   font-size: 5px;
 }
-img {
+.search-img img {
   width: 8em;
 }
 </style>
@@ -97,6 +101,7 @@ export default {
   data() {
     return {
       keyword: "钢铁侠" || null,
+      startI: 0,
       list: []
     };
   },
@@ -117,24 +122,35 @@ export default {
       this.search("down");
     });
     this.scroller.on("pullingUp", () => {
+      this.startI += 10;
       this.search("up");
     });
   },
   watch: {
     keyword() {
+      if (this.keyword == null) return;
+      this.list = [];
       this.search();
     }
   },
   methods: {
     search: function(type = "") {
-      this.list = [];
-      fetch(`/api/search?tag=${this.keyword}&count=10`)
+      fetch(`/api/search?tag=${this.keyword}&start=${this.startI}&count=10`, {
+        headers: {
+          "Content-Type": "json"
+        }
+      })
         .then(r => {
+          console.log(r);
           return r.json();
         })
         .then(r => {
           console.log(r);
-          this.list = r.subjects;
+          if (type == "up") {
+            this.list = this.list.concat(r.subjects);
+          } else {
+            this.list = r.subjects;
+          }
           this.$nextTick(() => {
             this.scroller.refresh();
             if (type == "down") {

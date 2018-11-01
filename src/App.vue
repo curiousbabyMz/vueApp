@@ -31,7 +31,12 @@ export default {
   left: 20px;
   z-index: 5;
 }
-ul{
+ul {
   padding: 0;
+}
+a :visited,
+a {
+  color: black;
+  text-decoration: none;
 }
 </style>

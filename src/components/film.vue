@@ -26,7 +26,7 @@
   color: #fff;
 }
 .film_type {
-  padding:5px 20px;
+  padding: 5px 20px;
   line-height: 30px;
   background: rgb(9, 160, 84);
   display: flex;
@@ -55,6 +55,9 @@
   display: flex;
   align-items: center;
   flex: 1;
+}
+.film_list_img img {
+  width: 12em;
 }
 </style>
 

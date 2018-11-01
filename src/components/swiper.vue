@@ -21,7 +21,7 @@
 .swipercontainer {
   position: relative;
 }
-img {
+.swiper-item img {
   width: 12rem;
 }
 .title {
