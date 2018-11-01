@@ -95,7 +95,7 @@
 </style>
 
 <script>
-import { getImages } from "@/base/util.js";
+import { getImages, surl } from "@/base/util.js";
 import BScroll from "better-scroll";
 export default {
   data() {
@@ -119,6 +119,7 @@ export default {
       }
     });
     this.scroller.on("pullingDown", () => {
+      this.startI = 0;
       this.search("down");
     });
     this.scroller.on("pullingUp", () => {
@@ -135,7 +136,7 @@ export default {
   },
   methods: {
     search: function(type = "") {
-      fetch(`/api/search?tag=${this.keyword}&start=${this.startI}&count=10`, {
+      fetch(`${surl}search?tag=${this.keyword}&start=${this.startI}&count=10`, {
         headers: {
           "Content-Type": "json"
         }

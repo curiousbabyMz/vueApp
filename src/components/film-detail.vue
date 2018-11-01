@@ -1,9 +1,9 @@
 <template>
     <div class="container Fdetail-container">
-      <div class="back"><router-link to='/index'><span class="iconfont icon-leftopen"></span></router-link></div>
+      <div class="back" @click="b" ><span class="iconfont icon-leftopen"></span></div>
       <div class="head" :style="{background:`url(${getImages(data.images.large)}) center/cover`}">
         <div><img v-lazy="getImages(data.images.small)" alt=""/></div>
-        <div class="title">
+        <div class="filmTitle">
           <h3>{{data.title}}</h3>
           <h2>{{data.rating.average}}</h2>
           <h5>{{data.ratings_count}}人评价</h5>
@@ -108,7 +108,7 @@ p {
     transform: translateY(-100%);
   }
 }
-.back {
+/* .back {
   font-family: "iconfont";
   position: absolute;
   width: 30px;
@@ -116,7 +116,7 @@ p {
   top: 20px;
   left: 20px;
   z-index: 1;
-}
+} */
 a {
   text-decoration: none;
 }
@@ -132,7 +132,7 @@ a {
 </style>
 
 <script>
-import { getImages } from "../base/util";
+import { getImages, surl } from "@/base/util";
 export default {
   data() {
     return {
@@ -141,7 +141,7 @@ export default {
     };
   },
   activated() {
-    fetch(`/api/subject/${this.$route.params.id}`)
+    fetch(`${surl}subject/${this.$route.params.id}`)
       .then(r => {
         return r.json();
       })
@@ -173,6 +173,9 @@ export default {
       } else {
         return alert("已加入购物车");
       }
+    },
+    b: function() {
+      this.$router.go(-1);
     },
     getImages: getImages
   }

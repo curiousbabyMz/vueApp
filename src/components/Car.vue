@@ -1,6 +1,6 @@
 <template>
   <div class="container car-container">
-    <div class="back"><router-link to='/index'><span class="iconfont icon-leftopen"></span></router-link></div>
+    <div class="back"><router-link :to='"/index"'><span class="iconfont icon-leftopen"></span></router-link></div>
     <div class="items">
       <div v-for="(v,i) in goodsList" :key="i" class="item">
         <div class="film-pic"><img :src="v.url" alt=""></div>

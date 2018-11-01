@@ -24,6 +24,7 @@ a:visited {
 <script>
 import swiper from "@/components/swiper";
 import films from "@/components/films";
+import { surl } from "@/base/util";
 export default {
   data() {
     return {
@@ -36,8 +37,9 @@ export default {
     };
   },
   mounted() {
-    fetch("/api/in_theaters?count=5")
+    fetch(`${surl}in_theaters?count=5`)
       .then(r => {
+        // console.log(r);
         return r.json();
       })
       .then(r => {

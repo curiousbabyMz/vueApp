@@ -62,7 +62,7 @@
 </style>
 
 <script>
-import { getStyle, getImages } from "@/base/util";
+import { getStyle, getImages, surl } from "@/base/util";
 import BScroll from "better-scroll";
 export default {
   props: {
@@ -83,7 +83,7 @@ export default {
     this.scroller = this.initScroll(el);
     const { request } = el.dataset;
 
-    fetch(`/api/${request}?start=${Math.floor(Math.random() * 10)}`)
+    fetch(`${surl + request}?start=${Math.floor(Math.random() * 10)}`)
       .then(r => {
         return r.json();
       })

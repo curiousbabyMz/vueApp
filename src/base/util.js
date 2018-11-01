@@ -7,5 +7,7 @@ var getImages = function (_url) {
         return "https://images.weserv.nl/?url=" + _u;
     }
 }
+var surl = '/api/'
+// var surl ='http://api.douban.com/v2/movie/';
 
-export { getStyle, getImages }
+export { getStyle, getImages, surl }
