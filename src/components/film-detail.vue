@@ -56,10 +56,11 @@
 .head img {
   width: 100px;
   transform: translateY(20px);
+  z-index: 2;
 }
-.head .title {
-  padding: 10px;
-  z-index: 1;
+.head .filmTitle {
+  padding: 0 10px;
+  z-index: 2;
 }
 .main {
   flex-grow: 1;

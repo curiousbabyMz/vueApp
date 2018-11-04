@@ -13,6 +13,7 @@
 }
 .wrap > div:nth-of-type(1) {
   flex: 1;
+  overflow: auto;
 }
 
 </style>

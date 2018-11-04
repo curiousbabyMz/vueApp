@@ -14,7 +14,7 @@
         </div>
       </div>
     </div>
-    <div class="foot"><span class="sum">￥{{sum}}</span><button @click="console.log(`pay${v}`)">支 付</button></div>
+    <div class="foot"><span class="sum">￥{{sum}}</span><button @click="pay">支 付</button></div>
   </div>
 </template>
 <style>
@@ -120,6 +120,9 @@ export default {
         key: "number",
         value: n + val <= 0 ? 1 : n + val
       });
+    },
+    pay(){
+      console.log(`pay $${this.sum}`);
     }
   }
 };
