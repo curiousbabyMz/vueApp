@@ -4,7 +4,8 @@ Vue.use(Vuex);
 
 export const store = new Vuex.Store({
     state: {
-        goodsList: localStorage['goodsList'] ? JSON.parse(localStorage.getItem('goodsList')) : []
+        goodsList: localStorage['goodsList'] ? JSON.parse(localStorage.getItem('goodsList')) : [],
+        ordersList: localStorage['ordersList'] ? JSON.parse(localStorage.getItem('ordersList')) : []
     },
     getters: {
         goodsNumber: state => {
@@ -24,6 +25,11 @@ export const store = new Vuex.Store({
             const { index, key, value } = data;
             state.goodsList[index][key] = value;
             localStorage.setItem('goodsList', JSON.stringify(state.goodsList));
+        },
+        addOrder(state, data) {
+            data.num = state.ordersList.length;
+            state.ordersList.push(data);
+            localStorage.setItem("ordersList", JSON.stringify(state.ordersList));
         }
     }
 })

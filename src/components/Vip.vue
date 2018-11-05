@@ -32,11 +32,17 @@
             <div class="allOrders" @click="toggleChange">全部订单<span :class="['iconfont','icon-angleright',{'arrowy':toggle.allOrders}]"></span></div>
             <transition name="Toggle">
             <div class="list_allOrders" v-if="toggle.allOrders">
-                <div>9</div>
-                <div>9</div>
-                <div>9</div>
-                <div>9</div>
-                <div>9</div>
+              <div class="orderItem"  v-for="(o,i) in ordersList" :key="i">
+                <div class="orderNum">No.{{o.num}}</div>
+                <div class="goodsList" v-for="(v,i) in o.goodsList" :key="i">
+                  <div class="img"><img v-lazy="getImages(v.url)" alt=""></div>
+                  <div class="title">{{v.title}}</div>
+                  <div class="count">{{v.number+v.stock}}</div>
+                  <div class="price">￥{{v.price}}</div>
+                </div>
+                <div class="sum">合计：￥{{o.sum}}</div>
+                <!-- <div class="paid">{{o.paid}}</div> -->
+              </div>
             </div>
             </transition>
         </div>
@@ -62,8 +68,8 @@
   justify-content: center;
   align-items: center;
 }
-.vipImg img{
-    width: 100%;
+.vipImg img {
+  width: 100%;
 }
 .vipHead .name {
   margin: 30px 20px;
@@ -81,6 +87,36 @@
   flex: 1;
   overflow: auto;
 }
+.orderItem {
+  padding: 10px;
+  border: 1px solid #efefef;
+  border-width: 1px 0;
+}
+.orderItem .orderNum {
+  padding: 10px 0;
+  text-align: left;
+}
+.orderItem .goodsList {
+  display: flex;
+  justify-content: space-between;
+}
+.orderItem .goodsList .img img {
+  width: 4em;
+}
+.orderItem .goodsList .title,
+.orderItem .goodsList .count,
+.orderItem .goodsList .price {
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  flex: 1;
+  justify-content: center;
+}
+.orderItem .sum {
+  padding: 10px 35px;
+  text-align: right;
+}
+
 .nopay,
 .paid,
 .allOrders {
@@ -103,7 +139,8 @@
 }
 .Toggle-enter,
 .Toggle-leave-to {
-  transform: translate(0, -50%);
+  transform-origin: 0 -20%;
+  transform: rotateX(45deg);
   opacity: 0;
 }
 .arrowy {
@@ -113,6 +150,7 @@
 </style>
 
 <script>
+import { getImages } from "@/base/util";
 export default {
   data() {
     return {
@@ -123,10 +161,17 @@ export default {
       }
     };
   },
+  computed: {
+    ordersList() {
+      return this.$store.state.ordersList;
+    }
+  },
   methods: {
     toggleChange(e) {
+      console.log(this.ordersList);
       this.toggle[e.target.className] = !this.toggle[e.target.className];
-    }
+    },
+    getImages: getImages
   }
 };
 </script>

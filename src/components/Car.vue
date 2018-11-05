@@ -89,7 +89,8 @@ export default {
   methods: {
     ...mapMutations({
       del: "deleteGoods",
-      update: "updateGoods"
+      update: "updateGoods",
+      addOrder: "addOrder"
     }),
     findPosition(id) {
       return this.goodsList.findIndex(item => {
@@ -121,8 +122,14 @@ export default {
         value: n + val <= 0 ? 1 : n + val
       });
     },
-    pay(){
+    pay() {
       console.log(`pay $${this.sum}`);
+      let order = {
+        goodsList: this.goodsList,
+        sum: this.sum,
+        paid: false
+      };
+      this.addOrder(order);
     }
   }
 };
