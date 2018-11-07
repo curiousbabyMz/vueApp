@@ -15,6 +15,12 @@
       </div>
     </div>
     <div class="foot"><span class="sum">￥{{sum}}</span><button @click="pay">支 付</button></div>
+    <transition name="toastT">
+    <div class="toast" v-if="toast">
+      <p>是否支付？</p>
+      <div><button @click="submit(true)">是</button><button @click="submit(true)">否</button></div>
+    </div>
+    </transition>
   </div>
 </template>
 <style>
@@ -38,7 +44,7 @@
 }
 .item div {
   margin: 5px;
-  flex-grow: 1;
+  flex: 1;
 }
 .film-pic img {
   width: 50px;
@@ -66,11 +72,54 @@
   font-size: 18px;
   font-weight: bold;
 }
+.toast {
+  position: absolute;
+  margin: auto;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 70%;
+  height: 25%;
+  background: rgba(56, 221, 166, 0.904);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  border-radius: 20px;
+  overflow: hidden;
+}
+.toast p {
+  height: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.toast div {
+  display: flex;
+  flex: 1;
+}
+.toast button {
+  flex: 1;
+  border: none;
+  background: #efefef;
+  font-size: 1rem;
+}
+.toastT-enter-active,.toastT-leave-active{
+  transition: transform .3s ease-out;
+}
+.toastT-enter,.toastT-leave-to{
+  transform: scale(0,0)
+}
 </style>
 
 <script>
 import { mapMutations } from "vuex";
 export default {
+  data() {
+    return {
+      toast: false
+    };
+  },
   computed: {
     goodsList() {
       return this.$store.state.goodsList;
@@ -123,11 +172,15 @@ export default {
       });
     },
     pay() {
+      this.toast = true;
+    },
+    submit(p) {
+      this.toast=false;
       console.log(`pay $${this.sum}`);
       let order = {
         goodsList: this.goodsList,
         sum: this.sum,
-        paid: false
+        paid: p
       };
       this.addOrder(order);
     }

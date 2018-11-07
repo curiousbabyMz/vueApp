@@ -5,19 +5,28 @@
             <div class="vipInfo">
                 <div class="name">name</div>
             </div>
-            <div class="option">设置</div>
+            <div class="option" @click="clear">设置</div>
         </div>
         <div class="orders">
             <div class="nopay" @click="toggleChange">未付款<span :class="['iconfont','icon-angleright',{'arrowy':toggle.nopay}]"></span></div>
             <transition name="Toggle">
             <div class="list_nopay" v-if="toggle.nopay">
-                <div>1</div>
-                <div>1</div>
-                <div>1</div>
-                <div>1</div>
+              <div class="orderItem"  v-for="(o,i) in ordersList" :key="i" v-if="!o.paid">
+                <div class="orderNum">No.{{o.num}}</div>
+                <div class="goodsList">
+                  <div class="goodsItem" v-for="(v,i) in o.goodsList" :key="i">
+                    <div class="img"><img v-lazy="getImages(v.url)" alt=""></div>
+                    <div class="title">{{v.title}}</div>
+                    <div class="count">{{v.number+v.stock}}</div>
+                    <div class="price">￥{{v.price}}</div>
+                  </div>
+                </div>
+                <div class="sum">合计：￥{{o.sum}}</div>
+                <!-- <div class="paid">{{o.paid}}</div> -->
+              </div>
             </div>
             </transition>
-            <div class="paid" @click="toggleChange">已付款<span :class="['iconfont','icon-angleright',{'arrowy':toggle.paid}]"></span></div>
+            <!-- <div class="paid" @click="toggleChange">已付款<span :class="['iconfont','icon-angleright',{'arrowy':toggle.paid}]"></span></div>
             <transition name="Toggle">
             <div class="list_paid" v-if="toggle.paid">
                 <div>8</div>
@@ -28,17 +37,19 @@
                 <div>8</div>
                 <div>8</div>
             </div>
-            </transition>
+            </transition> -->
             <div class="allOrders" @click="toggleChange">全部订单<span :class="['iconfont','icon-angleright',{'arrowy':toggle.allOrders}]"></span></div>
             <transition name="Toggle">
             <div class="list_allOrders" v-if="toggle.allOrders">
               <div class="orderItem"  v-for="(o,i) in ordersList" :key="i">
                 <div class="orderNum">No.{{o.num}}</div>
-                <div class="goodsList" v-for="(v,i) in o.goodsList" :key="i">
-                  <div class="img"><img v-lazy="getImages(v.url)" alt=""></div>
-                  <div class="title">{{v.title}}</div>
-                  <div class="count">{{v.number+v.stock}}</div>
-                  <div class="price">￥{{v.price}}</div>
+                <div class="goodsList">
+                  <div class="goodsItem" v-for="(v,i) in o.goodsList" :key="i">
+                    <div class="img"><img v-lazy="getImages(v.url)" alt=""></div>
+                    <div class="title">{{v.title}}</div>
+                    <div class="count">{{v.number+v.stock}}</div>
+                    <div class="price">￥{{v.price}}</div>
+                  </div>
                 </div>
                 <div class="sum">合计：￥{{o.sum}}</div>
                 <!-- <div class="paid">{{o.paid}}</div> -->
@@ -89,15 +100,19 @@
 }
 .orderItem {
   padding: 10px;
-  border: 1px solid #efefef;
-  border-width: 1px 0;
+  margin-bottom: 5px;
+  background: #fff;
+  /* border: 1px solid rgb(2, 150, 34);
+  border-width: 2px 0; */
 }
 .orderItem .orderNum {
-  padding: 10px 0;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #efefef;
   text-align: left;
 }
-.orderItem .goodsList {
+.orderItem .goodsItem {
   display: flex;
+  width: 100%;
   justify-content: space-between;
 }
 .orderItem .goodsList .img img {
@@ -106,7 +121,7 @@
 .orderItem .goodsList .title,
 .orderItem .goodsList .count,
 .orderItem .goodsList .price {
-  padding: 15px;
+  padding: 10px;
   display: flex;
   align-items: center;
   flex: 1;
@@ -130,8 +145,8 @@
 }
 [class*="list"] {
   margin: 0 1px;
-  padding: 5px 0;
-  background: #fff;
+  /* padding: 5px 0; */
+  background: #ddd;
 }
 .Toggle-enter-active,
 .Toggle-leave-active {
@@ -171,7 +186,11 @@ export default {
       console.log(this.ordersList);
       this.toggle[e.target.className] = !this.toggle[e.target.className];
     },
-    getImages: getImages
+    getImages: getImages,
+    clear(){
+      console.log('clear');
+      this.$store.commit('clearOrder');
+    }
   }
 };
 </script>

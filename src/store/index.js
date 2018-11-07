@@ -27,9 +27,13 @@ export const store = new Vuex.Store({
             localStorage.setItem('goodsList', JSON.stringify(state.goodsList));
         },
         addOrder(state, data) {
-            data.num = state.ordersList.length;
+            data.num = state.ordersList.length + 1;
             state.ordersList.push(data);
             localStorage.setItem("ordersList", JSON.stringify(state.ordersList));
+        },
+        clearOrder(state, data) {
+            state.ordersList = [];
+            localStorage.removeItem("ordersList");
         }
     }
 })
